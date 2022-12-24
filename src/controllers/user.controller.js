@@ -176,11 +176,40 @@ const roleDetails = async (req, res) => {
   }
 }
 
+const isAdmin = async (req, res) => {
+
+  try {
+
+    const userId = req.params.userId;
+    const response = await userService.isAdmin(userId);
+
+    return res.status(201).json({
+      sucess: true,
+      msg: "no error",
+      response: response,
+      err: {},
+    });
+
+
+  } catch (error) {
+    console.log(error);
+
+    return res.status(500).json({
+      sucess: false,
+      msg: "internal server error",
+      response: "error",
+      err: { error },
+    });
+
+  }
+}
+
 module.exports = {
     signUp,
     getUser,
     signIn,
     isAuthenticate,
     addRole,
-    roleDetails
+    roleDetails,
+    isAdmin
 }

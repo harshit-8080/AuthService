@@ -16,4 +16,6 @@ userRouter.post("/role", userController.addRole);
 
 userRouter.get("/roles", userController.roleDetails);
 
+userRouter.get("/isAdmin/:userId", userController.isAdmin);
+
 module.exports = userRouter;
