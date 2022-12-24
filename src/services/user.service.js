@@ -11,3 +11,20 @@ exports.createUser= async (user) => {
     throw error;
   }
 };
+
+exports.getUser = async (userId) => {
+
+  try {
+    const result = await User.findByPk(userId,{
+      attributes:["id","name","email"]
+    });
+    if(result){
+      return result;
+    }else{
+      throw "userId not valid";
+    }
+
+  } catch (error) {
+      throw error;
+  }
+}

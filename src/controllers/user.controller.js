@@ -31,7 +31,35 @@ const createUser = async (req, res) => {
   }
 };
 
+const getUser = async (req, res) => {
+  try {
+
+    const userId = req.params.id;
+    const response = await userService.getUser(userId);
+
+    return res.status(201).json({
+      sucess: true,
+      msg: "user fetched successfully",
+      response: response,
+      err: {},
+    });
+
+
+  } catch (error) {
+    console.log(error);
+
+    return res.status(500).json({
+      sucess: false,
+      msg: "internal server error",
+      response: "error",
+      err: { error },
+    });
+
+  }
+};
+
 
 module.exports = {
     createUser,
+    getUser
 }
