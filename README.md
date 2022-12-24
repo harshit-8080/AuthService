@@ -17,3 +17,8 @@
     -   npx sequelize-cli init
 ## create database
     -   npx sequelize-cli db:create
+
+## generate model
+    -   npx sequelize-cli model:generate --name User --attributes name:string,email:string,password:string
+## db migrate
+    -   npx sequelize-cli db:migrate     
