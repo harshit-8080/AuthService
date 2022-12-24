@@ -1,6 +1,8 @@
 const { User } = require("../models/index");
 const bcrypt = require("bcrypt");
 const {createToken} = require("../utils/tokenHelper");
+const jwt = require("jsonwebtoken");
+const {SECRETTOKEN} = require("../config/server.config");
 
 exports.createUser= async (user) => {
 
@@ -50,6 +52,34 @@ exports.signIn = async (user) => {
       }else{
         return "Password incorrect"
       }
+    }
+
+  } catch (error) {
+      throw error;
+  }
+
+}
+
+exports.isAuthenticate = async (token) => {
+
+  try {
+
+    const response = jwt.verify(token,SECRETTOKEN);
+    if(response){
+
+        const user = await User.findOne({
+          where:{
+            email:response.email
+          }
+        })
+        if(!user){
+          throw {error:"invalid token"}
+        }else{
+          return user;
+        }
+    }
+    else{
+      throw {error:"invalid token"}
     }
 
   } catch (error) {

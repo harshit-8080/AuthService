@@ -5,7 +5,7 @@ const createToken = (email) => {
 
     try {
         const token = jwt.sign({
-            data: email
+            email: email
           }, SECRETTOKEN, { expiresIn: 60 * 60 });
         return token;
 

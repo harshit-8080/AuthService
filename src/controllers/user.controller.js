@@ -58,7 +58,7 @@ const getUser = async (req, res) => {
   }
 };
 
-const signIn = async (req, res) =>{
+const signIn = async (req, res) => {
   try {
 
     const user = {
@@ -89,8 +89,38 @@ const signIn = async (req, res) =>{
   }
 }
 
+const isAuthenticate = async (req, res) => {
+
+  try {
+
+    const token = req.headers["x-access-token"];
+
+    const response = await userService.isAuthenticate(token);
+
+    return res.status(201).json({
+      sucess: true,
+      msg: "no error",
+      response: response,
+      err: {},
+    });
+
+
+  } catch (error) {
+    console.log(error);
+
+    return res.status(500).json({
+      sucess: false,
+      msg: "internal server error",
+      response: "error",
+      err: { error },
+    });
+
+  }
+}
+
 module.exports = {
     signUp,
     getUser,
-    signIn
+    signIn,
+    isAuthenticate
 }
