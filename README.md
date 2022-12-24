@@ -22,5 +22,9 @@
     -   npx sequelize-cli model:generate --name User --attributes name:string,email:string,password:string
 ## db migrate
     -   npx sequelize-cli db:migrate   
-## password hashing
+## For password hashing
 -   password hashing is done using bcrypt npm package
+    - npm i bcrypt
+## For creating and verifying token  
+-   creating and verifying toekn is done using jwt npm package
+    - npm i jsonwebtoken
