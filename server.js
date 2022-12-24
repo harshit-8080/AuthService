@@ -11,6 +11,7 @@ const setupAndStartServer = async () => {
   app.use(bodyParsar.json());
   app.use(bodyParsar.urlencoded({extended:true}));
   app.use(userRouter);
+  
   // db.sequelize.sync();
 
   app.listen(PORT, (req, res) => {

@@ -1,4 +1,4 @@
-const { User } = require("../models/index");
+const { User,Role,User_Role } = require("../models/index");
 const bcrypt = require("bcrypt");
 const {createToken} = require("../utils/tokenHelper");
 const jwt = require("jsonwebtoken");
@@ -81,6 +81,39 @@ exports.isAuthenticate = async (token) => {
     else{
       throw {error:"invalid token"}
     }
+
+  } catch (error) {
+      throw error;
+  }
+
+}
+
+exports.addRole = async (userId, roleID) => {
+
+  try {
+
+    const user = await User.findByPk(userId);
+    const role = await Role.findByPk(roleID);
+
+    const response = user.addRole(role);
+    return response;
+
+  } catch (error) {
+      throw error;
+  }
+
+}
+
+exports.roleDetails = async (userId, roleID) => {
+
+  try {
+    const response = await Role.findAll({
+     include:{
+        model:User,
+        attributes:['id','name','email']
+     }
+    })
+    return response
 
   } catch (error) {
       throw error;

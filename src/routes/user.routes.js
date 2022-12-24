@@ -10,6 +10,10 @@ userRouter.get("/users/:id", userController.getUser);
 
 userRouter.post("/signin", userController.signIn);
 
-userRouter.get("/authenticate", userController.isAuthenticate)
+userRouter.get("/authenticate", userController.isAuthenticate);
+
+userRouter.post("/role", userController.addRole);
+
+userRouter.get("/roles", userController.roleDetails);
 
 module.exports = userRouter;
