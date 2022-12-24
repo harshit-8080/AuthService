@@ -1,6 +1,6 @@
 const userService = require("../services/user.service");
 
-const createUser = async (req, res) => {
+const signUp = async (req, res) => {
   try {
     
     const user = {
@@ -90,7 +90,7 @@ const signIn = async (req, res) =>{
 }
 
 module.exports = {
-    createUser,
+    signUp,
     getUser,
     signIn
 }
