@@ -120,3 +120,21 @@ exports.roleDetails = async (userId, roleID) => {
   }
 
 }
+
+exports.isAdmin = async (userId) => {
+
+  try {
+    const user = await User.findByPk(userId);
+    const adminRole = await Role.findOne({
+      where:{
+        name:"ADMIN"
+      }
+    })
+    const response = user.hasRole(adminRole);
+    return response;
+
+  } catch (error) {
+      throw error;
+  }
+
+}
