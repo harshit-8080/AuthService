@@ -24,7 +24,11 @@
     -   npx sequelize-cli db:migrate   
 ## For password hashing
 -   password hashing is done using bcrypt npm package
-    - npm i bcrypt
 ## For creating and verifying token  
 -   creating and verifying toekn is done using jwt npm package
-    - npm i jsonwebtoken
+## create seed file
+    -   npx sequelize-cli seed:generate --name add-roles   
+## run all seed files
+    -   npx sequelize-cli db:seed:all
+## run a seed file
+    -   npx sequelize-cli db:seed --seed 20221224214029-add-roles     
