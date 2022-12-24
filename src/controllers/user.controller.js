@@ -1,6 +1,6 @@
 const userService = require("../services/user.service");
 
-const createUser = async (req, res) => {
+const signUp = async (req, res) => {
   try {
     
     const user = {
@@ -31,7 +31,96 @@ const createUser = async (req, res) => {
   }
 };
 
+const getUser = async (req, res) => {
+  try {
+
+    const userId = req.params.id;
+    const response = await userService.getUser(userId);
+
+    return res.status(201).json({
+      sucess: true,
+      msg: "user fetched successfully",
+      response: response,
+      err: {},
+    });
+
+
+  } catch (error) {
+    console.log(error);
+
+    return res.status(500).json({
+      sucess: false,
+      msg: "internal server error",
+      response: "error",
+      err: { error },
+    });
+
+  }
+};
+
+const signIn = async (req, res) => {
+  try {
+
+    const user = {
+      email:req.body.email,
+      password:req.body.password
+    }
+
+    const response = await userService.signIn(user);
+
+    return res.status(201).json({
+      sucess: true,
+      msg: "no error",
+      response: response,
+      err: {},
+    });
+
+
+  } catch (error) {
+    console.log(error);
+
+    return res.status(500).json({
+      sucess: false,
+      msg: "internal server error",
+      response: "error",
+      err: { error },
+    });
+
+  }
+}
+
+const isAuthenticate = async (req, res) => {
+
+  try {
+
+    const token = req.headers["x-access-token"];
+
+    const response = await userService.isAuthenticate(token);
+
+    return res.status(201).json({
+      sucess: true,
+      msg: "no error",
+      response: response,
+      err: {},
+    });
+
+
+  } catch (error) {
+    console.log(error);
+
+    return res.status(500).json({
+      sucess: false,
+      msg: "internal server error",
+      response: "error",
+      err: { error },
+    });
+
+  }
+}
 
 module.exports = {
-    createUser,
+    signUp,
+    getUser,
+    signIn,
+    isAuthenticate
 }
