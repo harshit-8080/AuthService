@@ -1,0 +1,10 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "superpassword",
+    "database": "airline_auth_service",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
+

@@ -7,3 +7,18 @@
 
 ## Authorization
 -   process using which we check if user is authorize for certain resource or not.
+
+##  JWT (json web token)
+-   JWT helps us to create token using client credentials.
+-   We can use user "email" which is unique to create token.
+-   And later we can use the generated token to identify email (which we used earlier)
+
+## initialize sequelize
+    -   npx sequelize-cli init
+## create database
+    -   npx sequelize-cli db:create
+
+## generate model
+    -   npx sequelize-cli model:generate --name User --attributes name:string,email:string,password:string
+## db migrate
+    -   npx sequelize-cli db:migrate     
