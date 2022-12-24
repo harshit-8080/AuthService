@@ -58,8 +58,39 @@ const getUser = async (req, res) => {
   }
 };
 
+const signIn = async (req, res) =>{
+  try {
+
+    const user = {
+      email:req.body.email,
+      password:req.body.password
+    }
+
+    const response = await userService.signIn(user);
+
+    return res.status(201).json({
+      sucess: true,
+      msg: "no error",
+      response: response,
+      err: {},
+    });
+
+
+  } catch (error) {
+    console.log(error);
+
+    return res.status(500).json({
+      sucess: false,
+      msg: "internal server error",
+      response: "error",
+      err: { error },
+    });
+
+  }
+}
 
 module.exports = {
     createUser,
-    getUser
+    getUser,
+    signIn
 }

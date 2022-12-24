@@ -1,4 +1,6 @@
 const { User } = require("../models/index");
+const bcrypt = require("bcrypt");
+const {createToken} = require("../utils/tokenHelper");
 
 exports.createUser= async (user) => {
 
@@ -27,4 +29,31 @@ exports.getUser = async (userId) => {
   } catch (error) {
       throw error;
   }
+}
+
+exports.signIn = async (user) => {
+
+  try {
+    const checkUser = await User.findOne({
+      where:{
+        email:user.email
+      }
+    })
+
+    if(!checkUser){
+      return "Email Invalid"
+    }else{
+      const checkPassword = bcrypt.compareSync(user.password,checkUser.password);
+      if(checkPassword){
+        const token = createToken(user.email);
+        return {token:token};
+      }else{
+        return "Password incorrect"
+      }
+    }
+
+  } catch (error) {
+      throw error;
+  }
+
 }
