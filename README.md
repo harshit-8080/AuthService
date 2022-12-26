@@ -32,3 +32,7 @@
     -   npx sequelize-cli db:seed:all
 ## run a seed file
     -   npx sequelize-cli db:seed --seed 20221224214029-add-roles     
+## create migration file to add or remove columns
+    -   npx sequelize-cli migration:generate --name add_new_fields_to_bookings  
+    
+    
